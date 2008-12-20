@@ -1,1 +1,68 @@
-hello, github!
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8">
+   <title>steingrd@github</title>
+   <meta name="author" content="Steingrim Dovland">
+   <link rel="stylesheet" href="styles.css" type="text/css" media="screen">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" type="text/javascript"></script>
+   <script type="text/javascript">
+      $(function() {
+        var limit = 15        
+        var login = 'steingrd'
+      
+        $.getJSON('http://github.com/api/v1/json/' + login + '?callback=?', 
+          function(data) {
+            var repos = $.grep(data.user.repositories, function() {
+              return !this.fork
+            })
+      
+            repos.sort(function(a, b) {
+              return b.watchers - a.watchers
+            })
+      
+            $.each(repos.slice(0, limit), function() {
+              $('#repos').append('&raquo; <a href="' + this.url + '">' +
+              this.name + '<br>')
+            })
+        })        
+      });
+   </script>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td style="background-color: #225378;">
+      &nbsp;
+    </td>
+
+    <td style="background-color: #1695a3;">
+      &nbsp;
+    </td>
+
+    <td style="background-color: #acf0f2;">
+      &nbsp;
+    </td>
+
+    <td style="background-color: #f3ffe2; padding: 0 0.5em;">
+      <span class="header">steingrd@github</span><br><br>
+      <span class="subheader">Pages</span><br>
+      <span id="pages">
+	&raquo; <a href="/django-development-utils/">django-development-utils</a> <br>
+      </span>
+      <br>
+      <span class="subheader">Repos</span><br>
+      <span id="repos">
+      </span>
+    </td>
+
+    <td style="background-color: #eb7f00;">
+      &nbsp;
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+

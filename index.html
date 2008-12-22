@@ -23,7 +23,7 @@
       
             $.each(repos.slice(0, limit), function() {
               $('#repos').append('&raquo; <a href="' + this.url + '">' +
-              this.name + '<br>')
+              this.name + '</a><br>')
             })
         })        
       });
@@ -34,7 +34,7 @@
 					    left: 0; border: 0; height: 149px;"
 					    src="http://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"
 					    alt="Fork me on GitHub" /></a>
-<table>
+<table cellspacing="0" cellpadding="0">
   <tr>
     <td style="background-color: #225378;">
       &nbsp;
